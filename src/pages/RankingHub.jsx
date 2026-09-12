@@ -13,7 +13,7 @@ const icons={shield:Shield,zap:Zap,swords:Swords,map:MapPin,heart:Heart,timer:Ti
 const categories=['전체','카페','편의점','학원','사무','행사','매장','음식점','물류'];
 
 function TypeSettings({type}) {
-  return <div className="type-preferences"><span>{type.preferences.type==='short'?'단기':'장기'}</span>{Object.entries(options).map(([key,values])=><span key={key}>{values[type.preferences[key]]}</span>)}</div>;
+  return <div className="type-preferences"><span>{type.preferences.type==='short'?'단기':'장기'}</span>{Object.entries(options).map(([key,values])=><span key={key}>{values} {type.preferences[key]}점</span>)}</div>;
 }
 
 export function HunterRankings({user,jobs,onReason,...props}) {
@@ -31,7 +31,7 @@ export function HunterRankings({user,jobs,onReason,...props}) {
     <span className="eyebrow">HUNTER CLASS LEADERBOARDS / 08 TYPES</span>
     <h1>{selected?`${selected.name} 랭킹`:<>모든 유형의 랭킹<span className="dot">.</span></>}</h1>
     <p className="muted">{selected?selected.description:'같은 퀘스트, 다른 1위. 여덟 헌터 유형의 순위를 한눈에 비교해봐.'}</p>
-    <div className="ranking-context"><Shield size={23}/><div><b>내 유형 · {mine}</b><p>학교·지역·시간표는 내 설정을 유지하고, 각 유형의 대표 선호로 순위를 계산해.</p><small>가상 공고 {rawJobs.length}개 기준 · 실제 이용자 집계가 아닌 유형별 시뮬레이션</small></div>{mineType&&<button className="secondary" onClick={()=>pickType(mineType.id)}>내 유형 랭킹 <ArrowUpRight size={15}/></button>}</div>
+    <div className="ranking-context"><Shield size={23}/><div><b>내 유형 · {mine}</b><p>학교·지역·선호 시간는 내 설정을 유지하고, 각 유형의 대표 선호로 순위를 계산해.</p><small>가상 공고 {rawJobs.length}개 기준 · 실제 이용자 집계가 아닌 유형별 시뮬레이션</small></div>{mineType&&<button className="secondary" onClick={()=>pickType(mineType.id)}>내 유형 랭킹 <ArrowUpRight size={15}/></button>}</div>
     <div className="type-shortcuts" aria-label="헌터 유형 선택"><button className={!selected?'active':''} onClick={()=>pickType(null)}>전체 유형</button>{hunterTypes.map(type=><button key={type.id} className={selected?.id===type.id?'active':''} onClick={()=>pickType(type.id)}>{type.name}{type.name===mine&&<small>MY</small>}</button>)}</div>
     <div className="filters" aria-label="유형 랭킹 카테고리">{categories.map(category=><button key={category} className={filter===category?'selected':''} aria-pressed={filter===category} onClick={()=>pickCategory(category)}>{category}</button>)}</div>
     {selected?<>
@@ -64,7 +64,7 @@ function AnamListings() {
   return <section>
     <span className="eyebrow">ANAM LOCAL QUESTS / SOURCE LINKS</span><h1>안암에서 찾은 공고<span className="dot">.</span></h1>
     <p className="muted">실제 매장의 공개 채용 자료를 모았어. 마음에 드는 곳은 원문으로 이어서 확인해봐.</p>
-    <div className="source-note"><MapPin size={22}/><div><b>안암 지역 · 공개 검색 자료 확인 2026.09.12</b><p>현재 모집 여부는 원문에서 다시 확인해줘. 확인되지 않은 급여·이동시간·업무강도는 채워 넣지 않았고, POWER와 등급은 아직 계산하지 않아.</p></div></div>
+    <div className="source-note"><MapPin size={22}/><div><b>안암 지역 · 공개 검색 자료 확인 2026.09.12</b><p>현재 모집 여부는 원문에서 다시 확인해줘. 확인되지 않은 급여·이동시간는 채워 넣지 않았고, POWER와 등급은 아직 계산하지 않아.</p></div></div>
     <div className="real-filter-row"><div className="filters">{['전체','카페','음식점','매장'].map(c=><button key={c} className={category===c?'selected':''} onClick={()=>setCategory(c)}>{c}</button>)}</div><label className="closed-toggle"><input type="checkbox" checked={showClosed} onChange={e=>setShowClosed(e.target.checked)}/> 마감 참고 공고 포함</label></div>
     <div className="section-label"><span>{visible.length} SOURCE LISTINGS</span><small>원문 출처가 있는 실제 공고 · 순위 아님</small></div>
     {visible.length===0?<div className="empty">이 분류에서 확인된 미마감 공고가 없어. 다른 분류를 보거나 마감 참고 공고를 포함해봐.</div>:<div className="real-listings">{visible.map(job=><article className="panel real-listing" key={job.id}><div className="real-listing-top"><span className="eyebrow">{job.source} / {job.category}</span><span className={`listing-status ${job.status==='closed'?'closed':''}`}>{job.statusLabel}</span></div><h2>{job.name}</h2><p className="muted">{job.role}</p><strong className="source-pay">{job.pay?<>시급 {money(job.pay)}<em>원</em></>:'급여 원문 확인'}</strong><dl><div><dt>일정</dt><dd>{job.schedule}</dd></div><div><dt>위치</dt><dd>{job.address}</dd></div></dl><p className="source-description">{job.note}</p><a className="button secondary" href={job.url} target="_blank" rel="noopener noreferrer">{job.status==='closed'?'마감 공고 원문':'원문에서 조건·모집 여부 확인'}<ExternalLink size={15}/></a><small className="source-date">검색 자료 확인일 {job.checkedAt} · 실시간 채용 연동 아님</small></article>)}</div>}

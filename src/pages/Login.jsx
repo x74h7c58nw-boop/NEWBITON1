@@ -1,0 +1,10 @@
+import React,{useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Zap,ArrowRight} from 'lucide-react';
+export default function Login({user,setUser}){
+  const navigate=useNavigate();
+  const [name,setName]=useState(user.name||'');
+  const [email,setEmail]=useState(user.email||'');
+  function submit(e){e.preventDefault();if(!name.trim())return;setUser({...user,name:name.trim(),email:email.trim(),profileReady:true});navigate(user.complete?'/home':'/onboarding/type');}
+  return <section className="login-layout"><div className="login-intro"><span className="eyebrow">SSS ALBA · 나에게 맞는 알바 찾기</span><h1>당신의 시간에<br/><span>딱 맞는 알바.</span></h1><p className="muted">시간, 시급, 거리.<br/>내가 중요하게 생각하는 기준으로 찾아보세요.</p><div className="hero-art" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="hero-gem">⚡</div><span className="float-badge badge-gold">🪙 나다운 보상</span><span className="float-badge badge-time">⏰ 원하는 시간</span><span className="float-badge badge-near">📍 가까운 거리</span><div className="hero-rank">SSS <small>YOUR NEXT QUEST</small></div></div><div className="login-steps"><span>🎯 선호도 검사</span><span>🏆 유형 발견</span><span>💼 직종 선택</span></div></div><form className="panel login-form" onSubmit={submit}><div className="welcome-icon">👋</div><span className="eyebrow">WELCOME, NEW HUNTER</span><h2>반가워요, 헌터님</h2><p className="muted">이름과 이메일로 나만의 퀘스트를 시작해요.</p><label htmlFor="login-name">이름</label><input id="login-name" name="name" autoComplete="name" placeholder="이름을 입력해주세요" required maxLength={40} value={name} onChange={e=>setName(e.target.value)}/><label htmlFor="login-email">이메일</label><input id="login-email" name="email" type="email" autoComplete="email" placeholder="example@email.com" required maxLength={254} value={email} onChange={e=>setEmail(e.target.value)}/><button className="button primary" type="submit" disabled={!name.trim()||!email.trim()}>내 알바 찾기 <ArrowRight size={18}/></button><small className="muted">체험용 프로필입니다. 입력한 정보는 이 브라우저에만 저장되며 이메일 인증은 진행하지 않습니다.</small></form></section>;
+}

@@ -64,15 +64,6 @@
         }
       });
 
-      // 사용자 첫 클릭 시 자동 재생 시도
-      const startOnInteraction = () => {
-        if (!isPlaying) {
-          playAudio();
-        }
-        document.removeEventListener('click', startOnInteraction);
-      };
-
-      document.addEventListener('click', startOnInteraction);
     });
   </script>
 </body>
