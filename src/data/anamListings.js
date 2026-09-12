@@ -1,0 +1,8 @@
+// 공개 검색 자료에서 확인한 사실만 요약. 채용 진행 여부는 원문에서 재확인한다.
+// 이동시간·업무강도 등 미확인 값을 임의로 채우지 않으므로 mock 점수 계산에 넣지 않는다.
+export const anamListings = [
+  {id:'baeksojeong-weekday',name:'백소정 안암 본점',role:'평일 홀 서빙 아르바이트',category:'음식점',pay:null,schedule:'평일 · 세부 시간 원문 확인',address:'서울 성북구 개운사길 30, 2층',status:'unknown',statusLabel:'현재 모집 여부 확인 필요',source:'알바몬',url:'https://www.albamon.com/jobs/detail/119035164?logpath=7&sc=524',note:'검색 자료에 평일 아르바이트 모집 공고가 확인돼. 급여와 세부 일정은 원문에서 확인해줘.',checkedAt:'2026-09-12'},
+  {id:'baskin-anam',name:'배스킨라빈스 고대안암점',role:'주말 오후 근무',category:'매장',pay:null,schedule:'주말 오후 · 세부 시간 원문 확인',address:'안암역 도보 3분 (공고 표기)',status:'unknown',statusLabel:'상시모집 표기 · 재확인 필요',source:'알바몬',url:'https://www.albamon.com/jobs/detail/118041447?sc=548',note:'검색 자료는 상시모집으로 표시돼. 현재 채용 여부와 실제 시급은 원문에서 확인해줘.',checkedAt:'2026-09-12'},
+  {id:'tacobooth-anam',name:'더타코부스 안암역점',role:'매장관리자 · 정규직 공고',category:'음식점',pay:13000,schedule:'월~금 요일 협의 · 오전/오후 시간 협의',address:'서울 성북구 고려대로 100, 1층',status:'unknown',statusLabel:'상시모집 표기 · 재확인 필요',source:'알바몬',url:'https://m.albamon.com/jobs/detail/118952202?applyClick=y&logpath=7&pageIndex=3&pageNo=0&productCount=3&sc=52&searchPageNo=1&sectionType=NONE&space=M_JOBS_AREA',note:'검색 자료 기준 시급 13,000원, 수습 및 협의 가능. 1년 이상 근무·경력자 대상 정규직 공고라 알바와 고용형태를 구분해서 봐줘.',checkedAt:'2026-09-12'},
+  {id:'compose-anam',name:'컴포즈커피 고대안암오거리점',role:'카페 파트타임',category:'카페',pay:10320,schedule:'월·수·금 11:00–15:00 (협의)',address:'서울 성북구 안암로9가길 80-1',status:'closed',statusLabel:'마감 공고 · 참고용',source:'당근 알바',url:'https://jobs.daangn.com/job-posts/IGQt9KuK6SG?referrer_context=daangn_web.feed',note:'공개 검색 자료에서 구인 마감으로 확인된 공고야. 지원 가능한 공고로 추천하지 않아.',checkedAt:'2026-09-12'}
+];

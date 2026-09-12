@@ -1,0 +1,1 @@
+export function jobTitleGenerator(j){if(j.hourlyPay>=17000&&j.commuteMinutes>=40)return '고시급의 악마';if(j.commuteMinutes<=5&&j.commuteMinutes>0)return '5분컷';if(j.school&&j.fit>=90)return '공강의 지배자';if(j.workload===1)return '숨쉬면서 골드 수급';if(j.type==='short'&&j.hourlyPay>=14500)return '단기 폭딜';if(j.transportCost===0)return '무임승차의 축복';if(j.fit>=90)return '시간표 치트키';return '육각형 알바';}
